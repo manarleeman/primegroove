@@ -3,361 +3,89 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>School Inspection Checklist — Prime Groove Construction Ltd</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<title>School Inspection — Prime Groove Construction Ltd</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy: #1B3557;
-    --orange: #E87722;
-    --orange-light: #f9a05a;
-    --cream: #FAF8F5;
-    --warm-gray: #EAE6E0;
-    --mid: #9A9188;
-    --dark: #1a1410;
-    --green: #2D7D52;
-    --green-light: #e8f5ee;
-    --radius: 10px;
-  }
+:root {
+  --navy:#1B3557; --orange:#E87722; --sky:#3A8DDE;
+  --cream:#FAF8F5; --warm:#EAE6E0; --mid:#9A9188;
+  --dark:#1a1410; --green:#2D7D52; --green-bg:#e8f5ee;
+  --radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--dark);min-height:100vh}
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+header{background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 4px 24px rgba(27,53,87,.25)}
+.header-inner{max-width:800px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;gap:18px}
+.logo-block{display:flex;flex-direction:column;border-right:2px solid var(--orange);padding-right:18px}
+.logo-name{font-size:20px;font-weight:700;color:#fff}
+.logo-sub{font-size:9px;color:var(--sky);letter-spacing:2px;text-transform:uppercase;margin-top:2px}
+.header-title{flex:1}
+.header-title h1{font-size:16px;font-weight:700;color:#fff}
+.header-title p{font-size:11px;color:rgba(255,255,255,.45);margin-top:2px}
+.progress-pill{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:50px;padding:8px 14px;text-align:center;min-width:72px}
+.pct{font-size:22px;font-weight:700;color:var(--orange);line-height:1;font-family:'DM Mono',monospace}
+.pct-label{font-size:9px;color:rgba(255,255,255,.4);letter-spacing:1.5px;text-transform:uppercase}
+.progress-bar-wrap{background:rgba(255,255,255,.07);height:4px}
+.progress-bar-fill{height:4px;background:linear-gradient(90deg,var(--orange),#f9a05a);transition:width .4s ease;width:0%}
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    color: var(--dark);
-    min-height: 100vh;
-  }
+main{max-width:800px;margin:0 auto;padding:28px 24px 60px}
+.top-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.top-bar-left{font-size:12px;color:var(--mid)}
+.btn-reset{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:var(--mid);background:none;border:1.5px solid var(--warm);border-radius:50px;padding:6px 16px;cursor:pointer;transition:all .2s}
+.btn-reset:hover{border-color:var(--orange);color:var(--orange)}
+.btn-export{font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;color:#fff;background:var(--navy);border:none;border-radius:50px;padding:6px 16px;cursor:pointer;transition:all .2s;margin-left:8px}
+.btn-export:hover{background:var(--orange)}
 
-  /* ── HEADER ── */
-  header {
-    background: var(--navy);
-    padding: 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 4px 24px rgba(27,53,87,0.25);
-  }
+.section{margin-bottom:16px;border-radius:var(--radius);overflow:hidden;border:1.5px solid var(--warm);background:#fff;transition:box-shadow .2s}
+.section:hover{box-shadow:0 4px 20px rgba(27,53,87,.07)}
+.section-header{display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--navy);cursor:pointer;user-select:none}
+.section-num{font-size:26px;font-weight:700;color:var(--orange);line-height:1;min-width:28px;font-family:'DM Mono',monospace}
+.section-title{flex:1;font-weight:600;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#fff}
+.section-badge{font-size:10px;color:rgba(255,255,255,.45);font-family:'DM Mono',monospace}
+.section-badge.done{color:#f9a05a;font-weight:600}
+.chevron{color:rgba(255,255,255,.35);font-size:11px;transition:transform .3s;margin-left:6px}
+.section.collapsed .chevron{transform:rotate(-90deg)}
+.section-body{overflow:hidden;transition:max-height .35s ease}
+.section.collapsed .section-body{max-height:0!important}
 
-  .header-inner {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 18px 28px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
+.sub-label{padding:12px 18px 4px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--orange);border-top:1px solid var(--warm);margin-top:4px}
 
-  .logo-block {
-    display: flex;
-    flex-direction: column;
-    border-right: 2px solid var(--orange);
-    padding-right: 20px;
-  }
+.check-item{display:flex;align-items:flex-start;gap:12px;padding:11px 18px;border-bottom:1px solid var(--warm);cursor:pointer;transition:background .15s}
+.check-item:hover{background:var(--cream)}
+.check-item.checked{background:var(--green-bg)}
+input[type=checkbox]{appearance:none;-webkit-appearance:none;width:19px;height:19px;border:2px solid var(--warm);border-radius:5px;flex-shrink:0;margin-top:1px;cursor:pointer;transition:all .2s;position:relative;background:#fff}
+input[type=checkbox]:checked{background:var(--green);border-color:var(--green)}
+input[type=checkbox]:checked::after{content:'';position:absolute;left:4px;top:1px;width:6px;height:10px;border:2.5px solid #fff;border-top:none;border-left:none;transform:rotate(45deg)}
+.check-label{font-size:13px;color:var(--dark);line-height:1.5;flex:1}
+.check-item.checked .check-label{color:var(--green);text-decoration:line-through;text-decoration-color:rgba(45,125,82,.4)}
 
-  .logo-name {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22px;
-    letter-spacing: 2px;
-    color: #fff;
-    line-height: 1;
-  }
+.input-row{padding:4px 18px 12px 49px;border-bottom:1px solid var(--warm);background:#fefefe}
+.input-row.checked-bg{background:var(--green-bg)}
+.input-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--mid);margin-bottom:5px;display:block}
+.field-input{width:100%;padding:8px 12px;border-radius:8px;border:1.5px solid var(--warm);font-size:13px;color:var(--dark);font-family:'DM Sans',sans-serif;outline:none;background:#fff;transition:border .15s}
+.field-input:focus{border-color:var(--sky)}
+.field-input.narrow{max-width:200px}
+textarea.field-input{resize:vertical;min-height:62px}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
 
-  .logo-sub {
-    font-size: 10px;
-    color: var(--orange);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-top: 2px;
-  }
+.radio-group{display:flex;gap:8px;flex-wrap:wrap}
+.radio-opt{display:flex;align-items:center;gap:7px;cursor:pointer;padding:7px 14px;border-radius:8px;border:1.5px solid var(--warm);font-size:13px;font-weight:500;color:var(--dark);transition:all .15s;background:#fff;user-select:none}
+.radio-opt:hover{border-color:var(--sky);color:var(--sky)}
+.radio-opt.selected{border-color:var(--navy);background:var(--navy);color:#fff}
+.radio-dot{width:13px;height:13px;border-radius:50%;border:2px solid currentColor;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.radio-opt.selected .radio-dot::after{content:'';width:5px;height:5px;border-radius:50%;background:#fff;display:block}
 
-  .header-title {
-    flex: 1;
-  }
+.formula-box{margin:4px 18px 0 49px;background:var(--navy);border-radius:8px;padding:10px 14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.formula-box code{font-family:'DM Mono',monospace;font-size:12px;color:#f9a05a;flex:1}
+.calc-result{background:rgba(255,255,255,.12);border-radius:6px;padding:4px 12px;font-family:'DM Mono',monospace;font-size:13px;color:#fff;white-space:nowrap}
 
-  .header-title h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 26px;
-    letter-spacing: 2px;
-    color: #fff;
-    line-height: 1;
-  }
-
-  .header-title p {
-    font-size: 11px;
-    color: rgba(255,255,255,0.5);
-    letter-spacing: 1px;
-    margin-top: 3px;
-  }
-
-  .progress-pill {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 50px;
-    padding: 8px 16px;
-    text-align: center;
-    min-width: 80px;
-  }
-
-  .progress-pill .pct {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 26px;
-    color: var(--orange);
-    line-height: 1;
-  }
-
-  .progress-pill .pct-label {
-    font-size: 9px;
-    color: rgba(255,255,255,0.45);
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-  }
-
-  /* ── PROGRESS BAR ── */
-  .progress-bar-wrap {
-    background: rgba(255,255,255,0.07);
-    height: 4px;
-  }
-
-  .progress-bar-fill {
-    height: 4px;
-    background: linear-gradient(90deg, var(--orange), var(--orange-light));
-    transition: width 0.4s ease;
-    width: 0%;
-  }
-
-  /* ── MAIN ── */
-  main {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 32px 28px 60px;
-  }
-
-  /* ── RESET BUTTON ── */
-  .top-bar {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 24px;
-  }
-
-  .btn-reset {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    color: var(--mid);
-    background: none;
-    border: 1.5px solid var(--warm-gray);
-    border-radius: 50px;
-    padding: 7px 18px;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-
-  .btn-reset:hover {
-    border-color: var(--orange);
-    color: var(--orange);
-  }
-
-  /* ── SECTION ── */
-  .section {
-    margin-bottom: 20px;
-    border-radius: var(--radius);
-    overflow: hidden;
-    border: 1.5px solid var(--warm-gray);
-    background: #fff;
-    transition: box-shadow 0.2s;
-  }
-
-  .section:hover {
-    box-shadow: 0 4px 20px rgba(27,53,87,0.07);
-  }
-
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    padding: 16px 20px;
-    background: var(--navy);
-    cursor: pointer;
-    user-select: none;
-  }
-
-  .section-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 28px;
-    color: var(--orange);
-    line-height: 1;
-    min-width: 30px;
-  }
-
-  .section-title {
-    flex: 1;
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: #fff;
-  }
-
-  .section-badge {
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    color: rgba(255,255,255,0.5);
-    white-space: nowrap;
-  }
-
-  .section-badge.done {
-    color: var(--orange-light);
-    font-weight: 500;
-  }
-
-  .chevron {
-    color: rgba(255,255,255,0.4);
-    font-size: 12px;
-    transition: transform 0.3s;
-    margin-left: 8px;
-  }
-
-  .section.collapsed .chevron { transform: rotate(-90deg); }
-
-  .section-body {
-    padding: 0;
-    transition: max-height 0.35s ease;
-    overflow: hidden;
-  }
-
-  .section.collapsed .section-body {
-    max-height: 0 !important;
-  }
-
-  /* ── SUB-SECTION ── */
-  .subsection-label {
-    padding: 12px 20px 4px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--orange);
-    border-top: 1px solid var(--warm-gray);
-    margin-top: 4px;
-  }
-
-  .subsection-label:first-child {
-    border-top: none;
-    margin-top: 0;
-  }
-
-  /* ── CHECK ITEM ── */
-  .check-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-    padding: 11px 20px;
-    border-bottom: 1px solid var(--warm-gray);
-    transition: background 0.15s;
-    cursor: pointer;
-  }
-
-  .check-item:last-child { border-bottom: none; }
-
-  .check-item:hover { background: var(--cream); }
-
-  .check-item.checked { background: var(--green-light); }
-
-  .check-item input[type="checkbox"] {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--warm-gray);
-    border-radius: 5px;
-    flex-shrink: 0;
-    margin-top: 1px;
-    cursor: pointer;
-    transition: all 0.2s;
-    position: relative;
-    background: #fff;
-  }
-
-  .check-item input[type="checkbox"]:checked {
-    background: var(--green);
-    border-color: var(--green);
-  }
-
-  .check-item input[type="checkbox"]:checked::after {
-    content: '';
-    position: absolute;
-    left: 5px;
-    top: 2px;
-    width: 6px;
-    height: 10px;
-    border: 2.5px solid #fff;
-    border-top: none;
-    border-left: none;
-    transform: rotate(45deg);
-  }
-
-  .check-label {
-    font-size: 14px;
-    color: var(--dark);
-    line-height: 1.5;
-    transition: color 0.2s;
-    flex: 1;
-  }
-
-  .check-item.checked .check-label {
-    color: var(--green);
-    text-decoration: line-through;
-    text-decoration-color: rgba(45,125,82,0.4);
-  }
-
-  .check-item.checked .check-label em {
-    color: var(--green);
-  }
-
-  .note {
-    font-size: 12px;
-    color: var(--mid);
-    font-style: italic;
-    display: block;
-    margin-top: 2px;
-  }
-
-  /* ── FORMULA BOX ── */
-  .formula-box {
-    margin: 4px 20px 12px;
-    background: var(--navy);
-    border-radius: 8px;
-    padding: 10px 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .formula-box .formula-icon { font-size: 16px; }
-
-  .formula-box code {
-    font-family: 'DM Mono', monospace;
-    font-size: 13px;
-    color: var(--orange-light);
-    letter-spacing: 0.5px;
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    text-align: center;
-    padding: 20px;
-    font-size: 11px;
-    color: var(--mid);
-    letter-spacing: 1px;
-  }
-
-  footer span { color: var(--orange); }
+footer{text-align:center;padding:20px;font-size:11px;color:var(--mid)}
+footer span{color:var(--orange)}
 </style>
 </head>
 <body>
-
 <header>
   <div class="header-inner">
     <div class="logo-block">
@@ -365,25 +93,27 @@
       <div class="logo-sub">Construction Ltd</div>
     </div>
     <div class="header-title">
-      <h1>School Inspection</h1>
-      <p>To-Do Checklist · RC: 6861816</p>
+      <h1>School Inspection To-Do</h1>
+      <p>Field Inspection Form · RC: 6861816</p>
     </div>
     <div class="progress-pill">
       <div class="pct" id="pct">0%</div>
       <div class="pct-label">Done</div>
     </div>
   </div>
-  <div class="progress-bar-wrap">
-    <div class="progress-bar-fill" id="bar"></div>
-  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="bar"></div></div>
 </header>
 
 <main>
   <div class="top-bar">
-    <button class="btn-reset" onclick="resetAll()">↺ Reset All</button>
+    <span class="top-bar-left" id="count-label">0 of 0 items checked</span>
+    <div>
+      <button class="btn-reset" onclick="resetAll()">↺ Reset</button>
+      <button class="btn-export" onclick="exportData()">↓ Export Data</button>
+    </div>
   </div>
 
-  <!-- SECTION 1 -->
+  <!-- S1 -->
   <div class="section" id="s1">
     <div class="section-header" onclick="toggleSection('s1')">
       <div class="section-num">01</div>
@@ -392,13 +122,42 @@
       <div class="chevron">▼</div>
     </div>
     <div class="section-body" id="body-s1">
-      <label class="check-item"><input type="checkbox" data-id="1.1"><span class="check-label">Confirm student population</span></label>
-      <label class="check-item"><input type="checkbox" data-id="1.2"><span class="check-label">Confirm total staff strength</span></label>
-      <label class="check-item"><input type="checkbox" data-id="1.3"><span class="check-label">Confirm if school is Day or Boarding</span></label>
+
+      <label class="check-item" onclick="toggleCheck(this,'c1_1')">
+        <input type="checkbox" data-id="c1_1" onclick="event.stopPropagation()">
+        <span class="check-label">Confirm student population</span>
+      </label>
+      <div class="input-row" id="row-c1_1">
+        <label class="input-label">Total number of students</label>
+        <input class="field-input narrow" type="number" placeholder="e.g. 450" data-key="student_population" oninput="saveField(this);calcSeats()">
+      </div>
+
+      <label class="check-item" onclick="toggleCheck(this,'c1_2')">
+        <input type="checkbox" data-id="c1_2" onclick="event.stopPropagation()">
+        <span class="check-label">Confirm total staff strength</span>
+      </label>
+      <div class="input-row" id="row-c1_2">
+        <label class="input-label">Total number of staff</label>
+        <input class="field-input narrow" type="number" placeholder="e.g. 42" data-key="staff_count" oninput="saveField(this)">
+      </div>
+
+      <label class="check-item" onclick="toggleCheck(this,'c1_3')">
+        <input type="checkbox" data-id="c1_3" onclick="event.stopPropagation()">
+        <span class="check-label">Confirm if school is Day or Boarding</span>
+      </label>
+      <div class="input-row" id="row-c1_3">
+        <label class="input-label">School type — select one</label>
+        <div class="radio-group" id="rg-school_type">
+          <div class="radio-opt" onclick="selectRadio('school_type','Day School',this)"><div class="radio-dot"></div>Day School</div>
+          <div class="radio-opt" onclick="selectRadio('school_type','Boarding',this)"><div class="radio-dot"></div>Boarding</div>
+          <div class="radio-opt" onclick="selectRadio('school_type','Day & Boarding',this)"><div class="radio-dot"></div>Day &amp; Boarding</div>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- SECTION 2 -->
+  <!-- S2 -->
   <div class="section" id="s2">
     <div class="section-header" onclick="toggleSection('s2')">
       <div class="section-num">02</div>
@@ -407,32 +166,115 @@
       <div class="chevron">▼</div>
     </div>
     <div class="section-body" id="body-s2">
-      <label class="check-item"><input type="checkbox" data-id="2.1"><span class="check-label">Count and measure classrooms</span></label>
-      <label class="check-item"><input type="checkbox" data-id="2.2"><span class="check-label">Count and assess hostels</span></label>
-      <label class="check-item"><input type="checkbox" data-id="2.3"><span class="check-label">Assess perimeter fence condition and length</span></label>
-      <label class="check-item"><input type="checkbox" data-id="2.4"><span class="check-label">Check street lighting needs <span class="note">10m spacing</span></span></label>
-      <label class="check-item"><input type="checkbox" data-id="2.5"><span class="check-label">Assess toilet requirement based on occupancy</span></label>
+
+      <label class="check-item" onclick="toggleCheck(this,'c2_1')">
+        <input type="checkbox" data-id="c2_1" onclick="event.stopPropagation()">
+        <span class="check-label">Count and measure classrooms</span>
+      </label>
+      <div class="input-row" id="row-c2_1">
+        <div class="field-grid">
+          <div><label class="input-label">Number of classrooms</label><input class="field-input" type="number" placeholder="e.g. 12" data-key="classroom_count" oninput="saveField(this)"></div>
+          <div><label class="input-label">Average size</label><input class="field-input" type="text" placeholder="e.g. 9m × 7m" data-key="classroom_size" oninput="saveField(this)"></div>
+        </div>
+      </div>
+
+      <label class="check-item" onclick="toggleCheck(this,'c2_2')">
+        <input type="checkbox" data-id="c2_2" onclick="event.stopPropagation()">
+        <span class="check-label">Count and assess hostels</span>
+      </label>
+      <div class="input-row" id="row-c2_2">
+        <div class="field-grid" style="margin-bottom:8px">
+          <div><label class="input-label">Number of hostel blocks</label><input class="field-input" type="number" placeholder="e.g. 3" data-key="hostel_blocks" oninput="saveField(this)"></div>
+          <div><label class="input-label">Total rooms in hostels</label><input class="field-input" type="number" placeholder="e.g. 24" data-key="hostel_rooms" oninput="saveField(this)"></div>
+        </div>
+        <label class="input-label">Condition notes</label>
+        <input class="field-input" type="text" placeholder="e.g. Poor roof on Block A, broken windows..." data-key="hostel_condition" oninput="saveField(this)">
+      </div>
+
+      <label class="check-item" onclick="toggleCheck(this,'c2_3')">
+        <input type="checkbox" data-id="c2_3" onclick="event.stopPropagation()">
+        <span class="check-label">Assess perimeter fence condition and length</span>
+      </label>
+      <div class="input-row" id="row-c2_3">
+        <div class="field-grid">
+          <div><label class="input-label">Fence length (metres)</label><input class="field-input" type="number" placeholder="e.g. 320" data-key="fence_length" oninput="saveField(this)"></div>
+          <div><label class="input-label">Condition</label>
+            <select class="field-input" data-key="fence_condition" onchange="saveField(this)">
+              <option value="">Select condition</option>
+              <option>Good</option><option>Fair</option><option>Poor</option><option>Collapsed</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <label class="check-item" onclick="toggleCheck(this,'c2_4')">
+        <input type="checkbox" data-id="c2_4" onclick="event.stopPropagation()">
+        <span class="check-label">Check street lighting needs <span style="font-size:11px;color:var(--mid);font-style:italic">(10m spacing)</span></span>
+      </label>
+      <div class="input-row" id="row-c2_4">
+        <label class="input-label">Estimated number of light poles needed</label>
+        <input class="field-input narrow" type="number" placeholder="e.g. 32" data-key="light_poles" oninput="saveField(this)">
+      </div>
+
+      <label class="check-item" onclick="toggleCheck(this,'c2_5')">
+        <input type="checkbox" data-id="c2_5" onclick="event.stopPropagation()">
+        <span class="check-label">Assess toilet requirement based on occupancy</span>
+      </label>
+      <div class="input-row" id="row-c2_5">
+        <div class="field-grid">
+          <div><label class="input-label">Existing toilet stalls</label><input class="field-input" type="number" placeholder="e.g. 8" data-key="toilets_existing" oninput="saveField(this)"></div>
+          <div><label class="input-label">Additional stalls needed</label><input class="field-input" type="number" placeholder="e.g. 12" data-key="toilets_needed" oninput="saveField(this)"></div>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- SECTION 3 -->
+  <!-- S3 -->
   <div class="section" id="s3">
     <div class="section-header" onclick="toggleSection('s3')">
       <div class="section-num">03</div>
-      <div class="section-title">Documentation & Drawings</div>
+      <div class="section-title">Documentation &amp; Drawings</div>
       <div class="section-badge" id="badge-s3"></div>
       <div class="chevron">▼</div>
     </div>
     <div class="section-body" id="body-s3">
-      <label class="check-item"><input type="checkbox" data-id="3.1"><span class="check-label">Take measurements and photos</span></label>
-      <label class="check-item"><input type="checkbox" data-id="3.2"><span class="check-label">Prepare site plan with all buildings labeled</span></label>
-      <label class="check-item"><input type="checkbox" data-id="3.3"><span class="check-label">Prepare assessment drawings showing defects</span></label>
-      <label class="check-item"><input type="checkbox" data-id="3.4"><span class="check-label">Prepare working drawings</span></label>
-      <label class="check-item"><input type="checkbox" data-id="3.5"><span class="check-label">Ensure all items reflect in BOQ</span></label>
+
+      <label class="check-item" onclick="toggleCheck(this,'c3_1')">
+        <input type="checkbox" data-id="c3_1" onclick="event.stopPropagation()">
+        <span class="check-label">Take measurements and photos</span>
+      </label>
+      <div class="input-row" id="row-c3_1">
+        <label class="input-label">Measurement notes</label>
+        <textarea class="field-input" placeholder="e.g. All blocks measured. Admin block 24m × 12m..." data-key="measurements_notes" oninput="saveField(this)"></textarea>
+      </div>
+
+      <label class="check-item" onclick="toggleCheck(this,'c3_2')">
+        <input type="checkbox" data-id="c3_2" onclick="event.stopPropagation()">
+        <span class="check-label">Prepare site plan with all buildings labeled</span>
+      </label>
+      <div class="input-row" id="row-c3_2">
+        <label class="input-label">Number of buildings on site</label>
+        <input class="field-input narrow" type="number" placeholder="e.g. 7" data-key="buildings_count" oninput="saveField(this)">
+      </div>
+
+      <label class="check-item" onclick="toggleCheck(this,'c3_3')">
+        <input type="checkbox" data-id="c3_3" onclick="event.stopPropagation()">
+        <span class="check-label">Prepare assessment drawings showing defects</span>
+      </label>
+      <label class="check-item" onclick="toggleCheck(this,'c3_4')">
+        <input type="checkbox" data-id="c3_4" onclick="event.stopPropagation()">
+        <span class="check-label">Prepare working drawings</span>
+      </label>
+      <label class="check-item" onclick="toggleCheck(this,'c3_5')">
+        <input type="checkbox" data-id="c3_5" onclick="event.stopPropagation()">
+        <span class="check-label">Ensure all items reflect in BOQ</span>
+      </label>
+
     </div>
   </div>
 
-  <!-- SECTION 4 -->
+  <!-- S4 -->
   <div class="section" id="s4">
     <div class="section-header" onclick="toggleSection('s4')">
       <div class="section-num">04</div>
@@ -441,33 +283,83 @@
       <div class="chevron">▼</div>
     </div>
     <div class="section-body" id="body-s4">
-      <label class="check-item"><input type="checkbox" data-id="4.1"><span class="check-label">Sewage system</span></label>
-      <label class="check-item"><input type="checkbox" data-id="4.2"><span class="check-label">Hostels & staff accommodation</span></label>
-      <label class="check-item"><input type="checkbox" data-id="4.3"><span class="check-label">External works</span></label>
-      <label class="check-item"><input type="checkbox" data-id="4.4"><span class="check-label">Administrative facilities</span></label>
+
+      <label class="check-item" onclick="toggleCheck(this,'c4_1')">
+        <input type="checkbox" data-id="c4_1" onclick="event.stopPropagation()">
+        <span class="check-label">Sewage system</span>
+      </label>
+      <div class="input-row" id="row-c4_1"><label class="input-label">Findings</label><textarea class="field-input" placeholder="Describe sewage system condition..." data-key="sewage_findings" oninput="saveField(this)"></textarea></div>
+
+      <label class="check-item" onclick="toggleCheck(this,'c4_2')">
+        <input type="checkbox" data-id="c4_2" onclick="event.stopPropagation()">
+        <span class="check-label">Hostels &amp; staff accommodation</span>
+      </label>
+      <div class="input-row" id="row-c4_2"><label class="input-label">Findings</label><textarea class="field-input" placeholder="Describe hostel and accommodation condition..." data-key="hostel_findings" oninput="saveField(this)"></textarea></div>
+
+      <label class="check-item" onclick="toggleCheck(this,'c4_3')">
+        <input type="checkbox" data-id="c4_3" onclick="event.stopPropagation()">
+        <span class="check-label">External works</span>
+      </label>
+      <div class="input-row" id="row-c4_3"><label class="input-label">Findings</label><textarea class="field-input" placeholder="Drains, paths, parking, landscaping..." data-key="external_findings" oninput="saveField(this)"></textarea></div>
+
+      <label class="check-item" onclick="toggleCheck(this,'c4_4')">
+        <input type="checkbox" data-id="c4_4" onclick="event.stopPropagation()">
+        <span class="check-label">Administrative facilities</span>
+      </label>
+      <div class="input-row" id="row-c4_4"><label class="input-label">Findings</label><textarea class="field-input" placeholder="Admin block, offices, reception..." data-key="admin_findings" oninput="saveField(this)"></textarea></div>
+
     </div>
   </div>
 
-  <!-- SECTION 5 -->
+  <!-- S5 -->
   <div class="section" id="s5">
     <div class="section-header" onclick="toggleSection('s5')">
       <div class="section-num">05</div>
-      <div class="section-title">Classroom & Furniture Assessment</div>
+      <div class="section-title">Classroom &amp; Furniture Assessment</div>
       <div class="section-badge" id="badge-s5"></div>
       <div class="chevron">▼</div>
     </div>
     <div class="section-body" id="body-s5">
-      <label class="check-item"><input type="checkbox" data-id="5.1"><span class="check-label">Count students per classroom</span></label>
-      <label class="check-item"><input type="checkbox" data-id="5.2"><span class="check-label">Calculate seating requirement</span></label>
-      <div class="formula-box">
-        <span class="formula-icon">🧮</span>
-        <code>Students ÷ 3 = Number of seats required</code>
+
+      <label class="check-item" onclick="toggleCheck(this,'c5_1')">
+        <input type="checkbox" data-id="c5_1" onclick="event.stopPropagation()">
+        <span class="check-label">Count students per classroom</span>
+      </label>
+      <div class="input-row" id="row-c5_1">
+        <div class="field-grid">
+          <div><label class="input-label">Total students</label><input class="field-input" type="number" placeholder="e.g. 600" id="total-students" data-key="total_students" oninput="saveField(this);calcSeats()"></div>
+          <div><label class="input-label">Avg. students per classroom</label><input class="field-input" type="number" placeholder="e.g. 40" data-key="students_per_class" oninput="saveField(this)"></div>
+        </div>
       </div>
-      <label class="check-item"><input type="checkbox" data-id="5.3"><span class="check-label">Assess whiteboard requirements</span></label>
+
+      <label class="check-item" onclick="toggleCheck(this,'c5_2')">
+        <input type="checkbox" data-id="c5_2" onclick="event.stopPropagation()">
+        <span class="check-label">Calculate seating requirement</span>
+      </label>
+      <div class="formula-box">
+        <code>Students ÷ 3 = Benches needed &nbsp;(3 students per bench)</code>
+        <div class="calc-result" id="seat-result">— benches</div>
+      </div>
+      <div class="input-row" id="row-c5_2" style="padding-top:10px">
+        <label class="input-label">Existing benches / seats on site</label>
+        <input class="field-input narrow" type="number" placeholder="e.g. 120" data-key="existing_seats" oninput="saveField(this)">
+      </div>
+
+      <label class="check-item" onclick="toggleCheck(this,'c5_3')">
+        <input type="checkbox" data-id="c5_3" onclick="event.stopPropagation()">
+        <span class="check-label">Assess whiteboard requirements</span>
+      </label>
+      <div class="input-row" id="row-c5_3">
+        <div class="field-grid">
+          <div><label class="input-label">Existing boards</label><input class="field-input" type="number" placeholder="e.g. 8" data-key="boards_existing" oninput="saveField(this)"></div>
+          <div><label class="input-label">New whiteboards needed</label><input class="field-input" type="number" placeholder="e.g. 6" data-key="boards_needed" oninput="saveField(this)"></div>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- SECTION 6 -->
+  <!-- S6 -->
   <div class="section" id="s6">
     <div class="section-header" onclick="toggleSection('s6')">
       <div class="section-num">06</div>
@@ -476,37 +368,51 @@
       <div class="chevron">▼</div>
     </div>
     <div class="section-body" id="body-s6">
-      <div class="subsection-label">Principal's Office</div>
-      <label class="check-item"><input type="checkbox" data-id="6.1"><span class="check-label">TV</span></label>
-      <label class="check-item"><input type="checkbox" data-id="6.2"><span class="check-label">Chairs</span></label>
-      <label class="check-item"><input type="checkbox" data-id="6.3"><span class="check-label">Fridge</span></label>
-      <label class="check-item"><input type="checkbox" data-id="6.4"><span class="check-label">Carpet</span></label>
-      <label class="check-item"><input type="checkbox" data-id="6.5"><span class="check-label">AC / DC Fan</span></label>
-      <label class="check-item"><input type="checkbox" data-id="6.6"><span class="check-label">Executive desk & chair</span></label>
-      <label class="check-item"><input type="checkbox" data-id="6.7"><span class="check-label">Printer</span></label>
-      <label class="check-item"><input type="checkbox" data-id="6.8"><span class="check-label">Cabinet</span></label>
-      <label class="check-item"><input type="checkbox" data-id="6.9"><span class="check-label">Sofa</span></label>
-      <label class="check-item"><input type="checkbox" data-id="6.10"><span class="check-label">Toilet</span></label>
 
-      <div class="subsection-label">Vice Principal Offices</div>
-      <label class="check-item"><input type="checkbox" data-id="6.11"><span class="check-label">TV</span></label>
-      <label class="check-item"><input type="checkbox" data-id="6.12"><span class="check-label">Chairs</span></label>
-      <label class="check-item"><input type="checkbox" data-id="6.13"><span class="check-label">Fridge</span></label>
-      <label class="check-item"><input type="checkbox" data-id="6.14"><span class="check-label">Carpet</span></label>
-      <label class="check-item"><input type="checkbox" data-id="6.15"><span class="check-label">AC / DC Fan</span></label>
-      <label class="check-item"><input type="checkbox" data-id="6.16"><span class="check-label">Desk & chair</span></label>
-      <label class="check-item"><input type="checkbox" data-id="6.17"><span class="check-label">Printer</span></label>
-      <label class="check-item"><input type="checkbox" data-id="6.18"><span class="check-label">Cabinet</span></label>
-      <label class="check-item"><input type="checkbox" data-id="6.19"><span class="check-label">Toilet</span></label>
+      <div class="sub-label">Principal's Office</div>
+      <label class="check-item" onclick="toggleCheck(this,'c6_p0')"><input type="checkbox" data-id="c6_p0" onclick="event.stopPropagation()"><span class="check-label">TV</span></label>
+      <label class="check-item" onclick="toggleCheck(this,'c6_p1')"><input type="checkbox" data-id="c6_p1" onclick="event.stopPropagation()"><span class="check-label">Chairs</span></label>
+      <label class="check-item" onclick="toggleCheck(this,'c6_p2')"><input type="checkbox" data-id="c6_p2" onclick="event.stopPropagation()"><span class="check-label">Fridge</span></label>
+      <label class="check-item" onclick="toggleCheck(this,'c6_p3')"><input type="checkbox" data-id="c6_p3" onclick="event.stopPropagation()"><span class="check-label">Carpet</span></label>
+      <label class="check-item" onclick="toggleCheck(this,'c6_p4')"><input type="checkbox" data-id="c6_p4" onclick="event.stopPropagation()"><span class="check-label">AC / DC Fan</span></label>
+      <label class="check-item" onclick="toggleCheck(this,'c6_p5')"><input type="checkbox" data-id="c6_p5" onclick="event.stopPropagation()"><span class="check-label">Executive desk &amp; chair</span></label>
+      <label class="check-item" onclick="toggleCheck(this,'c6_p6')"><input type="checkbox" data-id="c6_p6" onclick="event.stopPropagation()"><span class="check-label">Printer</span></label>
+      <label class="check-item" onclick="toggleCheck(this,'c6_p7')"><input type="checkbox" data-id="c6_p7" onclick="event.stopPropagation()"><span class="check-label">Cabinet</span></label>
+      <label class="check-item" onclick="toggleCheck(this,'c6_p8')"><input type="checkbox" data-id="c6_p8" onclick="event.stopPropagation()"><span class="check-label">Sofa</span></label>
+      <label class="check-item" onclick="toggleCheck(this,'c6_p9')"><input type="checkbox" data-id="c6_p9" onclick="event.stopPropagation()"><span class="check-label">Toilet</span></label>
+      <div class="input-row">
+        <label class="input-label">Principal's Office — additional notes</label>
+        <input class="field-input" type="text" placeholder="Any extra observations..." data-key="principal_notes" oninput="saveField(this)">
+      </div>
 
-      <div class="subsection-label">Staff Room</div>
-      <label class="check-item"><input type="checkbox" data-id="6.20"><span class="check-label">Desks & chairs</span></label>
-      <label class="check-item"><input type="checkbox" data-id="6.21"><span class="check-label">Sofa</span></label>
-      <label class="check-item"><input type="checkbox" data-id="6.22"><span class="check-label">Fridge</span></label>
+      <div class="sub-label">Vice Principal Offices</div>
+      <label class="check-item" onclick="toggleCheck(this,'c6_v0')"><input type="checkbox" data-id="c6_v0" onclick="event.stopPropagation()"><span class="check-label">TV</span></label>
+      <label class="check-item" onclick="toggleCheck(this,'c6_v1')"><input type="checkbox" data-id="c6_v1" onclick="event.stopPropagation()"><span class="check-label">Chairs</span></label>
+      <label class="check-item" onclick="toggleCheck(this,'c6_v2')"><input type="checkbox" data-id="c6_v2" onclick="event.stopPropagation()"><span class="check-label">Fridge</span></label>
+      <label class="check-item" onclick="toggleCheck(this,'c6_v3')"><input type="checkbox" data-id="c6_v3" onclick="event.stopPropagation()"><span class="check-label">Carpet</span></label>
+      <label class="check-item" onclick="toggleCheck(this,'c6_v4')"><input type="checkbox" data-id="c6_v4" onclick="event.stopPropagation()"><span class="check-label">AC / DC Fan</span></label>
+      <label class="check-item" onclick="toggleCheck(this,'c6_v5')"><input type="checkbox" data-id="c6_v5" onclick="event.stopPropagation()"><span class="check-label">Desk &amp; chair</span></label>
+      <label class="check-item" onclick="toggleCheck(this,'c6_v6')"><input type="checkbox" data-id="c6_v6" onclick="event.stopPropagation()"><span class="check-label">Printer</span></label>
+      <label class="check-item" onclick="toggleCheck(this,'c6_v7')"><input type="checkbox" data-id="c6_v7" onclick="event.stopPropagation()"><span class="check-label">Cabinet</span></label>
+      <label class="check-item" onclick="toggleCheck(this,'c6_v8')"><input type="checkbox" data-id="c6_v8" onclick="event.stopPropagation()"><span class="check-label">Toilet</span></label>
+      <div class="input-row">
+        <label class="input-label">Number of Vice Principal offices</label>
+        <input class="field-input narrow" type="number" placeholder="e.g. 2" data-key="vp_offices" oninput="saveField(this)">
+      </div>
+
+      <div class="sub-label">Staff Room</div>
+      <label class="check-item" onclick="toggleCheck(this,'c6_s0')"><input type="checkbox" data-id="c6_s0" onclick="event.stopPropagation()"><span class="check-label">Desks &amp; chairs</span></label>
+      <label class="check-item" onclick="toggleCheck(this,'c6_s1')"><input type="checkbox" data-id="c6_s1" onclick="event.stopPropagation()"><span class="check-label">Sofa</span></label>
+      <label class="check-item" onclick="toggleCheck(this,'c6_s2')"><input type="checkbox" data-id="c6_s2" onclick="event.stopPropagation()"><span class="check-label">Fridge</span></label>
+      <div class="input-row">
+        <label class="input-label">Staff desks needed</label>
+        <input class="field-input narrow" type="number" placeholder="e.g. 24" data-key="staff_desks" oninput="saveField(this)">
+      </div>
+
     </div>
   </div>
 
-  <!-- SECTION 7 -->
+  <!-- S7 -->
   <div class="section" id="s7">
     <div class="section-header" onclick="toggleSection('s7')">
       <div class="section-num">07</div>
@@ -515,133 +421,206 @@
       <div class="chevron">▼</div>
     </div>
     <div class="section-body" id="body-s7">
-      <label class="check-item"><input type="checkbox" data-id="7.1"><span class="check-label">Solar inverter requirement</span></label>
-      <label class="check-item"><input type="checkbox" data-id="7.2"><span class="check-label">Sewage infrastructure</span></label>
-      <label class="check-item"><input type="checkbox" data-id="7.3"><span class="check-label">External works / security</span></label>
-      <label class="check-item"><input type="checkbox" data-id="7.4"><span class="check-label">Bed capacity in hostels</span></label>
-      <label class="check-item"><input type="checkbox" data-id="7.5"><span class="check-label">Number of beds required</span></label>
-      <label class="check-item"><input type="checkbox" data-id="7.6"><span class="check-label">Ceiling finishes</span></label>
-      <label class="check-item"><input type="checkbox" data-id="7.7"><span class="check-label">Floor tile finishes</span></label>
+
+      <label class="check-item" onclick="toggleCheck(this,'c7_1')">
+        <input type="checkbox" data-id="c7_1" onclick="event.stopPropagation()">
+        <span class="check-label">Solar inverter requirement</span>
+      </label>
+      <div class="input-row" id="row-c7_1">
+        <div class="field-grid">
+          <div><label class="input-label">Capacity needed (kVA)</label><input class="field-input" type="text" placeholder="e.g. 10kVA" data-key="solar_capacity" oninput="saveField(this)"></div>
+          <div><label class="input-label">Number of units</label><input class="field-input" type="number" placeholder="e.g. 2" data-key="solar_units" oninput="saveField(this)"></div>
+        </div>
+      </div>
+
+      <label class="check-item" onclick="toggleCheck(this,'c7_2')">
+        <input type="checkbox" data-id="c7_2" onclick="event.stopPropagation()">
+        <span class="check-label">Sewage infrastructure</span>
+      </label>
+      <div class="input-row" id="row-c7_2"><label class="input-label">Notes</label><input class="field-input" type="text" placeholder="Type of system, condition..." data-key="sewage_infra" oninput="saveField(this)"></div>
+
+      <label class="check-item" onclick="toggleCheck(this,'c7_3')">
+        <input type="checkbox" data-id="c7_3" onclick="event.stopPropagation()">
+        <span class="check-label">External works / security</span>
+      </label>
+      <div class="input-row" id="row-c7_3"><label class="input-label">Notes</label><input class="field-input" type="text" placeholder="Gates, guardhouse, fencing..." data-key="security_notes" oninput="saveField(this)"></div>
+
+      <label class="check-item" onclick="toggleCheck(this,'c7_4')">
+        <input type="checkbox" data-id="c7_4" onclick="event.stopPropagation()">
+        <span class="check-label">Bed capacity in hostels</span>
+      </label>
+      <div class="input-row" id="row-c7_4">
+        <div class="field-grid">
+          <div><label class="input-label">Current beds</label><input class="field-input" type="number" placeholder="e.g. 80" data-key="beds_current" oninput="saveField(this)"></div>
+          <div><label class="input-label">Required beds</label><input class="field-input" type="number" placeholder="e.g. 150" data-key="beds_required" oninput="saveField(this)"></div>
+        </div>
+      </div>
+
+      <label class="check-item" onclick="toggleCheck(this,'c7_5')">
+        <input type="checkbox" data-id="c7_5" onclick="event.stopPropagation()">
+        <span class="check-label">Number of beds required</span>
+      </label>
+      <div class="input-row" id="row-c7_5"><label class="input-label">Additional beds to procure</label><input class="field-input narrow" type="number" placeholder="e.g. 70" data-key="beds_to_procure" oninput="saveField(this)"></div>
+
+      <label class="check-item" onclick="toggleCheck(this,'c7_6')">
+        <input type="checkbox" data-id="c7_6" onclick="event.stopPropagation()">
+        <span class="check-label">Ceiling finishes</span>
+      </label>
+      <div class="input-row" id="row-c7_6">
+        <div class="field-grid">
+          <div><label class="input-label">Ceiling type / material</label><input class="field-input" type="text" placeholder="e.g. PVC, Gypsum" data-key="ceiling_type" oninput="saveField(this)"></div>
+          <div><label class="input-label">Condition</label>
+            <select class="field-input" data-key="ceiling_condition" onchange="saveField(this)">
+              <option value="">Select</option><option>Good</option><option>Fair</option><option>Poor</option><option>None / Missing</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <label class="check-item" onclick="toggleCheck(this,'c7_7')">
+        <input type="checkbox" data-id="c7_7" onclick="event.stopPropagation()">
+        <span class="check-label">Floor tile finishes</span>
+      </label>
+      <div class="input-row" id="row-c7_7">
+        <div class="field-grid">
+          <div><label class="input-label">Floor type / material</label><input class="field-input" type="text" placeholder="e.g. Ceramic, Terrazzo, Bare" data-key="floor_type" oninput="saveField(this)"></div>
+          <div><label class="input-label">Condition</label>
+            <select class="field-input" data-key="floor_condition" onchange="saveField(this)">
+              <option value="">Select</option><option>Good</option><option>Fair</option><option>Poor</option><option>None / Missing</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
-
 </main>
 
-<footer>
-  <span>Prime Groove Construction Ltd</span> · Excellence in Every Detail · RC: 6861816
-</footer>
+<footer><span>Prime Groove Construction Ltd</span> · Excellence in Every Detail · RC: 6861816</footer>
 
 <script>
-  const STORAGE_KEY = 'pg_school_inspection_v1';
-  const SECTIONS = ['s1','s2','s3','s4','s5','s6','s7'];
+const KEY='pg_inspect_v2';
+const SECTIONS=['s1','s2','s3','s4','s5','s6','s7'];
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{};}catch{return {};}}
+function save(s){localStorage.setItem(KEY,JSON.stringify(s));}
 
-  // ── Load saved state ──
-  function loadState() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } 
-    catch { return {}; }
-  }
+function toggleCheck(label,id){
+  const cb=label.querySelector('input[type=checkbox]');
+  cb.checked=!cb.checked;
+  const state=load(); state[id]=cb.checked; save(state);
+  label.classList.toggle('checked',cb.checked);
+  const row=document.getElementById('row-'+id);
+  if(row) row.classList.toggle('checked-bg',cb.checked);
+  updateProgress(); updateBadges();
+}
 
-  function saveState(state) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  }
+function saveField(el){
+  const state=load(); state['field_'+el.dataset.key]=el.value; save(state);
+}
 
-  // ── Init checkboxes from localStorage ──
-  function initCheckboxes() {
-    const state = loadState();
-    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-      const id = cb.dataset.id;
-      if (state[id]) {
-        cb.checked = true;
-        cb.closest('.check-item').classList.add('checked');
-      }
-      cb.addEventListener('change', () => {
-        const s = loadState();
-        s[id] = cb.checked;
-        saveState(s);
-        cb.closest('.check-item').classList.toggle('checked', cb.checked);
-        updateProgress();
-        updateBadges();
-      });
-    });
-  }
+function selectRadio(key,value,el){
+  el.parentElement.querySelectorAll('.radio-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  const state=load(); state['radio_'+key]=value; save(state);
+}
 
-  // ── Progress bar & % ──
-  function updateProgress() {
-    const all = document.querySelectorAll('input[type="checkbox"]');
-    const checked = document.querySelectorAll('input[type="checkbox"]:checked');
-    const pct = all.length ? Math.round((checked.length / all.length) * 100) : 0;
-    document.getElementById('pct').textContent = pct + '%';
-    document.getElementById('bar').style.width = pct + '%';
-  }
+function calcSeats(){
+  const v=parseInt(document.getElementById('total-students').value)||0;
+  document.getElementById('seat-result').textContent=v>0?Math.ceil(v/3)+' benches':'— benches';
+}
 
-  // ── Section badges ──
-  function updateBadges() {
-    SECTIONS.forEach(sid => {
-      const body = document.getElementById('body-' + sid);
-      const all = body.querySelectorAll('input[type="checkbox"]');
-      const checked = body.querySelectorAll('input[type="checkbox"]:checked');
-      const badge = document.getElementById('badge-' + sid);
-      badge.textContent = checked.length + ' / ' + all.length;
-      badge.className = 'section-badge' + (checked.length === all.length && all.length > 0 ? ' done' : '');
-    });
-  }
+function toggleSection(sid){
+  const sec=document.getElementById(sid);
+  const body=document.getElementById('body-'+sid);
+  const collapsed=sec.classList.contains('collapsed');
+  if(collapsed){sec.classList.remove('collapsed');body.style.maxHeight=body.scrollHeight+'px';}
+  else{body.style.maxHeight=body.scrollHeight+'px';requestAnimationFrame(()=>sec.classList.add('collapsed'));}
+  const state=load(); state['__col_'+sid]=!collapsed; save(state);
+}
 
-  // ── Toggle section collapse ──
-  function toggleSection(sid) {
-    const sec = document.getElementById(sid);
-    const body = document.getElementById('body-' + sid);
-    const isCollapsed = sec.classList.contains('collapsed');
-    if (isCollapsed) {
-      sec.classList.remove('collapsed');
-      body.style.maxHeight = body.scrollHeight + 'px';
-    } else {
-      body.style.maxHeight = body.scrollHeight + 'px';
-      requestAnimationFrame(() => {
-        sec.classList.add('collapsed');
+function updateProgress(){
+  const all=document.querySelectorAll('input[type=checkbox]');
+  const checked=document.querySelectorAll('input[type=checkbox]:checked');
+  const pct=all.length?Math.round(checked.length/all.length*100):0;
+  document.getElementById('pct').textContent=pct+'%';
+  document.getElementById('bar').style.width=pct+'%';
+  document.getElementById('count-label').textContent=checked.length+' of '+all.length+' items checked';
+}
+
+function updateBadges(){
+  SECTIONS.forEach(sid=>{
+    const body=document.getElementById('body-'+sid);
+    const all=body.querySelectorAll('input[type=checkbox]');
+    const checked=body.querySelectorAll('input[type=checkbox]:checked');
+    const badge=document.getElementById('badge-'+sid);
+    badge.textContent=checked.length+' / '+all.length;
+    badge.className='section-badge'+(checked.length===all.length&&all.length>0?' done':'');
+  });
+}
+
+function resetAll(){
+  if(!confirm('Reset all checkboxes and clear all entered data?')) return;
+  const state=load(); const newState={};
+  SECTIONS.forEach(sid=>{if(state['__col_'+sid]!==undefined)newState['__col_'+sid]=state['__col_'+sid];});
+  save(newState);
+  document.querySelectorAll('input[type=checkbox]').forEach(cb=>{cb.checked=false;cb.closest('.check-item').classList.remove('checked');});
+  document.querySelectorAll('.input-row').forEach(r=>r.classList.remove('checked-bg'));
+  document.querySelectorAll('.field-input').forEach(f=>{f.tagName==='SELECT'?f.selectedIndex=0:f.value='';});
+  document.querySelectorAll('.radio-opt').forEach(o=>o.classList.remove('selected'));
+  document.getElementById('seat-result').textContent='— benches';
+  updateProgress(); updateBadges();
+}
+
+function exportData(){
+  const state=load();
+  let out='PRIME GROOVE CONSTRUCTION LTD\nSCHOOL INSPECTION REPORT\nExported: '+new Date().toLocaleString()+'\n\n';
+  out+='=== CHECKLIST ===\n';
+  document.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+    const lbl=cb.closest('.check-item').querySelector('.check-label').textContent.trim();
+    out+=(cb.checked?'[x] ':'[ ] ')+lbl+'\n';
+  });
+  out+='\n=== RECORDED DATA ===\n';
+  Object.entries(state).forEach(([k,v])=>{
+    if(k.startsWith('field_')||k.startsWith('radio_')) out+=k.replace('field_','').replace('radio_','')+': '+v+'\n';
+  });
+  const blob=new Blob([out],{type:'text/plain'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='PrimeGroove_Inspection_'+new Date().toISOString().slice(0,10)+'.txt';
+  a.click();
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const state=load();
+  SECTIONS.forEach(sid=>{
+    const body=document.getElementById('body-'+sid);
+    body.style.maxHeight=body.scrollHeight+'px';
+    if(state['__col_'+sid]) document.getElementById(sid).classList.add('collapsed');
+  });
+  document.querySelectorAll('input[type=checkbox]').forEach(cb=>{
+    if(state[cb.dataset.id]){
+      cb.checked=true; cb.closest('.check-item').classList.add('checked');
+      const row=document.getElementById('row-'+cb.dataset.id);
+      if(row) row.classList.add('checked-bg');
+    }
+  });
+  document.querySelectorAll('.field-input').forEach(f=>{
+    if(f.dataset.key&&state['field_'+f.dataset.key]!==undefined)
+      f.tagName==='SELECT'?f.value=state['field_'+f.dataset.key]:f.value=state['field_'+f.dataset.key];
+  });
+  const radioKeys=['school_type'];
+  radioKeys.forEach(k=>{
+    if(state['radio_'+k]){
+      const rg=document.getElementById('rg-'+k);
+      if(rg) rg.querySelectorAll('.radio-opt').forEach(o=>{
+        if(o.textContent.trim()===state['radio_'+k]) o.classList.add('selected');
       });
     }
-    // Save collapse state
-    const state = loadState();
-    state['__collapsed_' + sid] = !isCollapsed;
-    saveState(state);
-  }
-
-  // ── Reset all ──
-  function resetAll() {
-    if (!confirm('Reset all checkboxes? This cannot be undone.')) return;
-    const state = loadState();
-    // Keep collapse states, clear checkboxes
-    const newState = {};
-    SECTIONS.forEach(sid => {
-      if (state['__collapsed_' + sid] !== undefined)
-        newState['__collapsed_' + sid] = state['__collapsed_' + sid];
-    });
-    saveState(newState);
-    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-      cb.checked = false;
-      cb.closest('.check-item').classList.remove('checked');
-    });
-    updateProgress();
-    updateBadges();
-  }
-
-  // ── Boot ──
-  document.addEventListener('DOMContentLoaded', () => {
-    const state = loadState();
-
-    // Restore collapse states
-    SECTIONS.forEach(sid => {
-      const body = document.getElementById('body-' + sid);
-      body.style.maxHeight = body.scrollHeight + 'px';
-      if (state['__collapsed_' + sid]) {
-        document.getElementById(sid).classList.add('collapsed');
-      }
-    });
-
-    initCheckboxes();
-    updateProgress();
-    updateBadges();
   });
+  calcSeats();
+  updateProgress();
+  updateBadges();
+});
 </script>
 </body>
 </html>
